@@ -85,6 +85,11 @@ SELECT * FROM matches WHERE division_code = 'E0' ORDER BY (fthg + ftag) DESC, ft
 
 SELECT season, division_code, SUM(fthg+ftag) AS totalgoalsever FROM matches GROUP BY season, division_code ORDER BY totalgoalsever DESC;
 
+-- Alternative:
+SELECT division_code, season FROM (SELECT division_code, season, SUM(fthg + ftag) AS total_goals FROM matches GROUP BY division_code, season) AS goals_per_season
+ORDER BY total_goals DESC, season DESC;
+
+
 SELECT * FROM divisions WHERE code = 'EC';
 
 
